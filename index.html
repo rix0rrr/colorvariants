@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+    <head>
+        <title>ColorVariants</title>
+
+        <link rel="stylesheet" href="bower_components/jquery.colorpicker/jquery.colorpicker.css">
+        <link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="colorvariants.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <h1>ColorVariants</h1>
+
+                    <div class="well">
+                        <h4>Load stateblob</h4>
+                        <input data-bind="value: stateblob" class="input-block-level"><br>
+                        <button class="btn btn-success" data-bind="click: loadStateBlob">Load</button>
+                    </div>
+
+                    <h2>Edit colors and variants</h2>
+                    <p>H: 0..360, S: 0..100, V: 0..100</p>
+
+                    <table class="table table-bordered" data-bind="with: colorGrid">
+                        <thead>
+                            <!-- Names -->
+                            <tr>
+                                <th>
+                                </th>
+                                <!-- ko foreach: variants -->
+                                <th>
+                                    <input data-bind="value: name" class="input-name">
+                                    <button class="btn btn-danger" data-bind="click: $parent.removeVariant"><i class="icon-minus-sign icon-white"></i></button>
+                                    <!-- ko ifnot: isBase -->
+                                    <div class="changes">
+                                        <input data-bind="value: change.hue_delta, valueUpdate: 'afterkeydown'" class="input-variant">H
+                                        <input data-bind="value: change.sat_delta, valueUpdate: 'afterkeydown'" class="input-variant">S
+                                        <input data-bind="value: change.val_delta, valueUpdate: 'afterkeydown'" class="input-variant">V
+                                    </div>
+                                    <!-- /ko -->
+                                </th>
+                                <!-- /ko -->
+                                <th>
+                                    <button class="btn btn-success" data-bind="click: addVariant"><i class="icon-plus-sign icon-white"></i> new </button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- ko foreach: { data: colors, as: '$color' } -->
+                            <tr>
+                                <td>
+                                    <input data-bind="value: name" class="input-name">
+                                    <button class="btn btn-danger" data-bind="click: $parent.removeColor"><i class="icon-minus-sign icon-white"></i></button>
+                                    <br>
+                                    <input data-bind="colorPicker: baseColor, valueUpdate: 'afterkeydown'" class="input-color">
+                                </td>
+                                <!-- ko foreach: { data: $parent.variants, as: '$variant' } -->
+                                <td data-bind="with: $color.swatchForVariant($variant)">
+                                    <div class="swatch-outer">
+                                        <div class="swatch-inner" data-bind="style: { background: theColor }"></div>
+                                    </div>
+                                    <!-- ko ifnot: $parent.isBase -->
+                                    <div class="changes">
+                                        <input data-bind="value: change.hue_delta, valueUpdate: 'afterkeydown'" class="input-variant">H
+                                        <input data-bind="value: change.sat_delta, valueUpdate: 'afterkeydown'" class="input-variant">S
+                                        <input data-bind="value: change.val_delta, valueUpdate: 'afterkeydown'" class="input-variant">V
+                                    </div>
+                                    <!-- /ko -->
+                                </td>
+                                <!-- /ko -->
+                                <td></td>
+                            </tr>
+                            <!-- /ko -->
+                            <tr>
+                                <td>
+                                    <button class="btn btn-success" data-bind="click: addColor"><i class="icon-plus-sign icon-white"></i> new </button>
+                                </td>
+                                <td data-bind="attr: { colspan: variants().length + 1 }"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Constants in <span data-bind="text: renderer.name"></span></h3>
+
+                    <pre data-bind="text: render"></pre>
+                </div>
+            </div>
+        </div>
+
+        <script src="bower_components/jquery/jquery.min.js"></script>
+        <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
+        <script src="bower_components/jquery.colorpicker/jquery.colorpicker.js"></script>
+        <script src="bower_components/knockout.js/knockout.js"></script>
+        <script src="bower_components/underscore/underscore-min.js"></script>
+        <script src="bower_components/jquery-color/jquery.color.js"></script>
+        <script src="bower_components/json2/json2.js"></script>
+        <script src="bower_components/base64/base64.min.js"></script>
+        <script src="RenderDelphi.js"></script>
+        <script src="ko-colorpicker.js"></script>
+        <script src="ColorChange.js"></script>
+        <script src="ColorVariant.js"></script>
+        <script src="Swatch.js"></script>
+        <script src="Color.js"></script>
+        <script src="ColorGrid.js"></script>
+        <script src="colorvariants.js"></script>
+    </body>
+</html>

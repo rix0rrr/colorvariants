@@ -1,0 +1,27 @@
+{
+  "name": "colorvariants",
+  "version": "0.0.1",
+  "authors": [
+      "Rico Huijbers <rix0rrr@gmail.com>"
+  ],
+  "description": "Generate color variants for any programming language",
+  "private": true,
+  "ignore": [
+      "**/.*",
+      "node_modules",
+      "bower_components",
+      "test",
+      "tests"
+  ],
+  "dependencies": {
+      "jquery": "2.x.x",
+      "jquery-ui": "1.x.x",
+      "jquery.colorpicker": "4.x.x",
+      "knockout.js": "2.x.x",
+      "bootstrap-css": "2.x.x",
+      "underscore": "1.x.x",
+      "jquery-color": "2.x.x",
+      "json2" : "*",
+      "base64": "0.2.x"
+  }
+}
