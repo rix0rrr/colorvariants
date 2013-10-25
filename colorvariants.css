@@ -31,6 +31,10 @@ th, td {
     vertical-align: top !important;
 }
 
+.table-nonfluid {
+    width: auto !important;
+}
+
 .swatch-outer {
     width: 120px;
     padding: 5px;
