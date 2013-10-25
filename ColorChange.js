@@ -5,11 +5,21 @@ function ColorChange() {
     self.sat_delta = ko.observable(0);
     self.val_delta = ko.observable(0);
 
+    var applyChange = function(base, input, abs_rescale) {
+        var num = parseFloat(input) || 0;
+        if (input.toString().match(/%$/)) { // Ends in %, so relative update
+            return base * (1 + num / 100);
+
+        } else { // Else absolute update (for numbers that need to end up between 0..1)
+            return base + num / abs_rescale;
+        }
+    }
+
     self.apply = function(color) {
         return jQuery.Color({
-            hue:        color.hue() +        (parseFloat(self.hue_delta()) || 0),
-            saturation: color.saturation() + (parseFloat(self.sat_delta()) || 0) / 100,
-            lightness:  color.lightness() +  (parseFloat(self.val_delta()) || 0) / 100
+            hue:        applyChange(color.hue(),        self.hue_delta(), 1),
+            saturation: applyChange(color.saturation(), self.sat_delta(), 100),
+            lightness:  applyChange(color.lightness(),  self.val_delta(), 100)
         });
     }
 
