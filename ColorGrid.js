@@ -38,7 +38,7 @@ function ColorGrid() {
     }
 
     self.addVariant = function() {
-        self.variants.push(mkColorVariant('variant'));
+        self.variants.push(mkColorVariant('Lighter', { v: '+' + (20 + 5 * self.variants().length) }));
         self.updateColorsForVariants();
     }
 
@@ -48,7 +48,7 @@ function ColorGrid() {
     }
 
     self.addColor = function() {
-        var c = mkColor('color');
+        var c = mkColor('Color');
         self.colors.push(c);
         c.updateForVariants(self.variants());
     }
