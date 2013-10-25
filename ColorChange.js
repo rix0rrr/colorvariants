@@ -9,9 +9,13 @@ function ColorChange() {
         var num = parseFloat(input) || 0;
         if (input.toString().match(/%$/)) { // Ends in %, so relative update
             return base * (1 + num / 100);
-
-        } else { // Else absolute update (for numbers that need to end up between 0..1)
+        } else if (input.toString().match(/A$/i)) { // Ends in A, so absolute update (for numbers that need to end up between 0..1)
             return base + num / abs_rescale;
+        } else { // Default, so update based on distance to maximum (gives best results
+            if (num > 0)
+                return base + (1 - base) * (num / 100);
+            else
+                return base + base * (num / 100);
         }
     }
 
