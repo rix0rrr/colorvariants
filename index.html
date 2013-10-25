@@ -6,17 +6,18 @@
         <link rel="stylesheet" href="bower_components/jquery.colorpicker/jquery.colorpicker.css">
         <link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.min.css">
         <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="bower_components/jquery-minicolors/jquery.minicolors.css">
         <link rel="stylesheet" href="colorvariants.css">
     </head>
     <body>
         <div class="container">
             <div class="row">
-                <div class="span12">
+                <div class="col-md-12">
                     <h1>ColorVariants</h1>
 
                     <div class="well">
                         <h4>Load stateblob</h4>
-                        <input data-bind="value: stateblob" class="input-block-level"><br>
+                        <input type="text" data-bind="value: stateblob" class="form-control" placeholder="Paste here..."><br>
                         <button class="btn btn-success" data-bind="click: loadStateBlob">Load</button>
                     </div>
 
@@ -32,7 +33,7 @@
                                 <!-- ko foreach: variants -->
                                 <th>
                                     <input data-bind="value: name" class="input-name">
-                                    <a href="#" title="Remove variant" data-bind="click: $parent.removeVariant"><i class="icon-minus-sign"></i></a>
+                                    <a href="#" title="Remove variant" data-bind="click: $parent.removeVariant"><i class="glyphicon glyphicon-minus-sign"></i></a>
                                     <!-- ko ifnot: isBase -->
                                     <div class="changes">
                                         <input data-bind="value: change.hue_delta, valueUpdate: 'afterkeydown'" class="input-variant">H
@@ -43,7 +44,7 @@
                                 </th>
                                 <!-- /ko -->
                                 <th>
-                                    <a href="#" title="Add new variant" data-bind="click: addVariant"><i class="icon-plus-sign"></i></a>
+                                    <a href="#" title="Add new variant" data-bind="click: addVariant"><i class="glyphicon glyphicon-plus-sign"></i></a>
                                 </th>
                             </tr>
                         </thead>
@@ -52,9 +53,10 @@
                             <tr>
                                 <td>
                                     <input data-bind="value: name" class="input-name">
-                                    <a href="#" title="Remove this color" data-bind="click: $parent.removeColor"><i class="icon-minus-sign"></i></a>
-                                    <br>
-                                    <input data-bind="colorPicker: baseColor, valueUpdate: 'afterkeydown'" class="input-color">
+                                    <a href="#" title="Remove this color" data-bind="click: $parent.removeColor"><i class="glyphicon glyphicon-minus-sign"></i></a>
+                                    <div class="topmargin">
+                                        <input type="text" data-bind="colorPicker: baseColor, valueUpdate: 'afterkeydown'" class="form-control">
+                                    </div>
                                 </td>
                                 <!-- ko foreach: { data: $parent.variants, as: '$variant' } -->
                                 <td data-bind="with: $color.swatchForVariant($variant)">
@@ -75,7 +77,7 @@
                             <!-- /ko -->
                             <tr>
                                 <td style="text-align: center;">
-                                    <a href="#" title="Add new color" data-bind="click: addColor"><i class="icon-plus-sign"></i></a>
+                                    <a href="#" title="Add new color" data-bind="click: addColor"><i class="glyphicon glyphicon-plus-sign"></i></a>
                                 </td>
                                 <td data-bind="attr: { colspan: variants().length + 1 }"></td>
                             </tr>
@@ -98,6 +100,7 @@
         <script src="bower_components/json2/json2.js"></script>
         <script src="bower_components/base64/base64.min.js"></script>
         <script src="bower_components/LZMA-JS/src/lzma_worker.js"></script>
+        <script src="bower_components/jquery-minicolors/jquery.minicolors.js"></script>
         <script src="RenderDelphi.js"></script>
         <script src="ko-colorpicker.js"></script>
         <script src="ColorChange.js"></script>

@@ -16,10 +16,9 @@
   "dependencies": {
       "jquery": "2.x.x",
       "jquery-ui": "1.x.x",
-      "jquery.colorpicker": "4.x.x",
-      "jquery-minicolors" : "2.x.x",
+      "jquery-minicolors" : "2.1.1",
       "knockout.js": "2.x.x",
-      "bootstrap-css": "2.x.x",
+      "bootstrap-css": "3.x.x",
       "underscore": "1.x.x",
       "jquery-color": "2.x.x",
       "json2" : "*",
