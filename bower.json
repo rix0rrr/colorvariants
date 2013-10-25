@@ -17,6 +17,7 @@
       "jquery": "2.x.x",
       "jquery-ui": "1.x.x",
       "jquery.colorpicker": "4.x.x",
+      "jquery-minicolors" : "2.x.x",
       "knockout.js": "2.x.x",
       "bootstrap-css": "2.x.x",
       "underscore": "1.x.x",
