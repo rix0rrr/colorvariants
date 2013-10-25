@@ -6,12 +6,18 @@ function ColorGrid() {
     self.variants = ko.observableArray();
     self.colors   = ko.observableArray();
 
-    function mkColorVariant(name) {
-        return new ColorVariant(name, variantId++);
+    function mkColorVariant(name, changes) {
+        return _(new ColorVariant(name, variantId++)).tap(function (v) {
+            if (changes && changes.h) v.change.hue_delta(changes.h);
+            if (changes && changes.s) v.change.sat_delta(changes.s);
+            if (changes && changes.v) v.change.val_delta(changes.v);
+        });
     }
 
-    function mkColor(name) {
-        return new Color(name);
+    function mkColor(name, baseColor) {
+        return _(new Color(name)).tap(function(c) {
+            if (baseColor) c.baseColor(baseColor);
+        });
     }
 
     self.updateColorsForVariants = function() {
@@ -52,10 +58,11 @@ function ColorGrid() {
     }
 
     self.initializeWithSamples = function() {
-        self.variants.push(mkColorVariant('base'));
-        self.variants.push(mkColorVariant('lighter'));
-        self.colors.push(mkColor('color1'));
-        self.colors.push(mkColor('color2'));
+        self.variants.push(mkColorVariant('Base'));
+        self.variants.push(mkColorVariant('Light', { v: '+25' }));
+        self.colors.push(mkColor('Normal', '#3574E8'));
+        self.colors.push(mkColor('Stock', '#ED5AF2'));
+        self.colors.push(mkColor('Grass', '#37BD28'));
         self.updateColorsForVariants();
     }
 
