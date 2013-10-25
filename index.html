@@ -32,7 +32,7 @@
                                 <!-- ko foreach: variants -->
                                 <th>
                                     <input data-bind="value: name" class="input-name">
-                                    <button class="btn btn-danger" data-bind="click: $parent.removeVariant"><i class="icon-minus-sign icon-white"></i></button>
+                                    <a href="#" title="Remove variant" data-bind="click: $parent.removeVariant"><i class="icon-minus-sign"></i></a>
                                     <!-- ko ifnot: isBase -->
                                     <div class="changes">
                                         <input data-bind="value: change.hue_delta, valueUpdate: 'afterkeydown'" class="input-variant">H
@@ -43,7 +43,7 @@
                                 </th>
                                 <!-- /ko -->
                                 <th>
-                                    <button class="btn btn-success" data-bind="click: addVariant"><i class="icon-plus-sign icon-white"></i> new </button>
+                                    <a href="#" title="Add new variant" data-bind="click: addVariant"><i class="icon-plus-sign"></i></a>
                                 </th>
                             </tr>
                         </thead>
@@ -52,7 +52,7 @@
                             <tr>
                                 <td>
                                     <input data-bind="value: name" class="input-name">
-                                    <button class="btn btn-danger" data-bind="click: $parent.removeColor"><i class="icon-minus-sign icon-white"></i></button>
+                                    <a href="#" title="Remove this color" data-bind="click: $parent.removeColor"><i class="icon-minus-sign"></i></a>
                                     <br>
                                     <input data-bind="colorPicker: baseColor, valueUpdate: 'afterkeydown'" class="input-color">
                                 </td>
@@ -74,8 +74,8 @@
                             </tr>
                             <!-- /ko -->
                             <tr>
-                                <td>
-                                    <button class="btn btn-success" data-bind="click: addColor"><i class="icon-plus-sign icon-white"></i> new </button>
+                                <td style="text-align: center;">
+                                    <a href="#" title="Add new color" data-bind="click: addColor"><i class="icon-plus-sign"></i></a>
                                 </td>
                                 <td data-bind="attr: { colspan: variants().length + 1 }"></td>
                             </tr>
