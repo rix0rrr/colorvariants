@@ -10,6 +10,8 @@ function AppModel() {
     self.renderer  = new RenderDelphi();
     self.error     = ko.observable('');
     self.undoStack = ko.observableArray();
+    self.shareUrl  = ko.observable('');
+    self.rendered  = ko.observable('');
 
     var lastState;
     var stateBeforeOpeningColorPicker;
@@ -84,8 +86,9 @@ function AppModel() {
     jsonifiedGrid.subscribe(function() {
         getStateBlobQ().then(function(blob) {
             lastState = blob;
-            var rendered = self.renderer.render(self.colorGrid(), blob);
-            $('#rendered').text(rendered);
+
+            self.shareUrl(location.protocol+'//'+location.host+location.pathname + '#' + blob);
+            self.rendered(self.renderer.render(self.colorGrid(), blob));
         }).fail(function(err) {
             self.error(err);
         });
@@ -143,8 +146,16 @@ function AppModel() {
         saveUndo(stateBeforeOpeningColorPicker);
     }
 
-
-    self.colorGrid().initializeWithSamples();
+    // Either load from window fragment or start with demo samples
+    var loadState = function() {
+        var h = window.location.hash.substr(1);
+        if (h)
+            self.load(h);
+        else
+            self.colorGrid().initializeWithSamples();
+    }
+    $(window).on('hashchange', loadState);
+    loadState();
 }
 
 var model = new AppModel();

@@ -91,9 +91,23 @@
                         </tbody>
                     </table>
 
-                    <h3>Constants in <span data-bind="text: renderer.name"></span></h3>
+                    <ul id="export" class="nav nav-tabs">
+                        <li><a href="#share" data-toggle="tab">Share</a></li>
+                        <li><a href="#code" data-toggle="tab">Code</a></li>
+                   </ul>
+                    <div class="tab-content">
+                        <div id="share" class="tab-pane active" style="overflow: hidden;">
+                            <p>Share this color scheme with the following URL:</p>
 
-                    <pre id="rendered"></pre>
+                            <p><a id="share-url" data-bind="attr: { href: shareUrl }, text: shareUrl"></a></p>
+                        </div>
+
+                        <div id="code" class="tab-pane">
+                            <h3>Constants generated for <span data-bind="text: renderer.name"></span></h3>
+                            <pre data-bind="text: rendered"></pre>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -107,6 +121,7 @@
         <script src="bower_components/base64/base64.min.js"></script>
         <script src="bower_components/LZMA-JS/src/lzma_worker.js"></script>
         <script src="bower_components/jquery-minicolors/jquery.minicolors.js"></script>
+        <script src="bower_components/bootstrap-css/js/bootstrap.min.js"></script>
         <script src="bower_components/q/q.js"></script>
         <script src="RenderDelphi.js"></script>
         <script src="ko-colorpicker.js"></script>
@@ -116,5 +131,11 @@
         <script src="Color.js"></script>
         <script src="ColorGrid.js"></script>
         <script src="colorvariants.js"></script>
+
+        <script>
+            $(function () {
+                $('#export a:first').tab('show');
+            })
+        </script>
     </body>
 </html>
