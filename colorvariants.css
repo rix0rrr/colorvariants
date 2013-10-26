@@ -51,3 +51,9 @@ th, td {
     margin-top: 5px;
 }
 
+.undo-btn {
+    position: fixed;
+    left: 100%;
+    margin-left: -80px;
+    top: 15px;
+}

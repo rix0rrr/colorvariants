@@ -7,16 +7,16 @@ ko.bindingHandlers.colorPicker = {
     init: function (element, valueAccessor, allBindingsAccessor) {
 
         //initialize datepicker with some optional options
-        var options = allBindingsAccessor().colorPickerOptions || {};
         var observable = valueAccessor();
 
         $(element).minicolors({
             theme: 'bootstrap',
+            hide: allBindingsAccessor().onHide,
+            show: allBindingsAccessor().onShow,
             change: function(hex) {
                 observable(hex)
             }
         });
-
 
         //handle disposal (if KO removes by the template binding)
         ko.utils.domNodeDisposal.addDisposeCallback(element, function () {

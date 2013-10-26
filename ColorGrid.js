@@ -6,6 +6,15 @@ function ColorGrid() {
     self.variants = ko.observableArray();
     self.colors   = ko.observableArray();
 
+    self.variants.subscribe(function(variants) {
+        // When variants are loaded externally, be sure to raise the ID appropriately
+        variantId = Math.max(variantId, variants.length);
+    });
+
+    function triggerChange() {
+        $(self).trigger('significantChange');
+    }
+
     function mkColorVariant(name, changes) {
         return _(new ColorVariant(name, variantId++)).tap(function (v) {
             if (changes && changes.h) v.change.hue_delta(changes.h);
@@ -40,21 +49,25 @@ function ColorGrid() {
     self.addVariant = function() {
         self.variants.push(mkColorVariant('Lighter', { v: '+' + (5 + 20 * self.variants().length) }));
         self.updateColorsForVariants();
+        triggerChange();
     }
 
     self.removeVariant = function(variant) {
         self.variants.remove(variant);
         self.updateColorsForVariants();
+        triggerChange();
     }
 
     self.addColor = function() {
         var c = mkColor('Color');
         self.colors.push(c);
         c.updateForVariants(self.variants());
+        triggerChange();
     }
 
     self.removeColor = function(color) {
         self.colors.remove(color);
+        triggerChange();
     }
 
     self.initializeWithSamples = function() {

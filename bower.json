@@ -23,6 +23,7 @@
       "jquery-color": "2.x.x",
       "json2" : "*",
       "base64": "0.2.x",
-      "LZMA-JS": "1.2.x"
+      "LZMA-JS": "1.2.x",
+      "q" : "0.9.x"
   }
 }

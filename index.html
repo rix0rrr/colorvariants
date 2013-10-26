@@ -3,7 +3,6 @@
     <head>
         <title>ColorVariants</title>
 
-        <link rel="stylesheet" href="bower_components/jquery.colorpicker/jquery.colorpicker.css">
         <link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.min.css">
         <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="bower_components/jquery-minicolors/jquery.minicolors.css">
@@ -13,7 +12,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>ColorVariants</h1>
+                    <div class="page-header">
+                        <h1>ColorVariants <small>We've got as many shades of grey as you want</small></h1>
+                    </div>
+
+                    <div class="alert alert-danger" data-bind="visible: error, text: error"></div>
 
                     <div class="well">
                         <h4>Load stateblob</h4>
@@ -23,6 +26,10 @@
 
                     <h2>Edit colors and variants</h2>
                     <p>H: 0..360, S: 0..100, V: 0..100. You can also use % for relative changes.</p>
+
+                    <div data-bind="visible: undoStack().length">
+                        <a class="btn btn-warning undo-btn" data-bind="click: undo">Undo</a>
+                    </div>
 
                     <table class="table table-bordered table-nonfluid" data-bind="with: colorGrid">
                         <thead>
@@ -55,7 +62,7 @@
                                     <input data-bind="value: name" class="input-name">
                                     <a href="#" title="Remove this color" data-bind="click: $parent.removeColor"><i class="glyphicon glyphicon-minus-sign"></i></a>
                                     <div class="topmargin">
-                                        <input type="text" data-bind="colorPicker: baseColor, valueUpdate: 'afterkeydown'" class="form-control">
+                                        <input type="text" data-bind="colorPicker: baseColor, onShow: $root.colorPickerOpened, onHide: $root.colorPickerClosed, valueUpdate: 'afterkeydown'" class="form-control">
                                     </div>
                                 </td>
                                 <!-- ko foreach: { data: $parent.variants, as: '$variant' } -->
@@ -93,7 +100,6 @@
 
         <script src="bower_components/jquery/jquery.min.js"></script>
         <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
-        <script src="bower_components/jquery.colorpicker/jquery.colorpicker.js"></script>
         <script src="bower_components/knockout.js/knockout.js"></script>
         <script src="bower_components/underscore/underscore-min.js"></script>
         <script src="bower_components/jquery-color/jquery.color.js"></script>
@@ -101,6 +107,7 @@
         <script src="bower_components/base64/base64.min.js"></script>
         <script src="bower_components/LZMA-JS/src/lzma_worker.js"></script>
         <script src="bower_components/jquery-minicolors/jquery.minicolors.js"></script>
+        <script src="bower_components/q/q.js"></script>
         <script src="RenderDelphi.js"></script>
         <script src="ko-colorpicker.js"></script>
         <script src="ColorChange.js"></script>
