@@ -1,3 +1,54 @@
+body {
+    background: url(images/escheresque.png);
+}
+
+.container {
+    width: 900px;
+}
+
+.main {
+    background: white;
+    padding: 30px 50px;
+}
+
+.page-header {
+    background: url(images/header.jpg);
+    background-repeat: repeat-x;
+    margin-top: 0px;
+    height: 150px;
+    margin-bottom: 0px;
+}
+
+.page-header h1 {
+    line-height: 150px;
+}
+
+h1 {
+    font-weight: bold;
+    letter-spacing: -2px;
+    text-shadow: 2px 2px 0px black;
+}
+
+h1 small {
+    letter-spacing: -1px;
+    text-shadow: none;
+}
+
+h2 { letter-spacing: -2px; }
+
+
+h1 { color: white; }
+h1 small { color: black; }
+
+h2 {
+    color: #7F228A;
+}
+
+.well {
+    background-color: #FFF9E3;
+    border-color: #C4B36C;
+}
+
 .input-name {
     width: 5em;
     border: 0px;
@@ -67,4 +118,8 @@ th, td {
 
 .nav-tabs {
     margin-bottom: 0;
+}
+
+.spacer {
+    height: 20px;
 }

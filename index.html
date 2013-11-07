@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
     <head>
+        <meta charset="utf-8"> 
         <title>ColorVariants</title>
 
         <link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.min.css">
@@ -9,22 +10,30 @@
         <link rel="stylesheet" href="colorvariants.css">
     </head>
     <body>
-        <div class="container">
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>ColorVariants <small>as many shades of grey as you want</small></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="page-header">
-                        <h1>ColorVariants <small>We've got as many shades of grey as you want</small></h1>
-                    </div>
-
                     <div class="alert alert-danger" data-bind="visible: error, text: error"></div>
 
+                    <h2>1 – Load</h2>
                     <div class="well">
                         <h4>Load stateblob</h4>
                         <input type="text" data-bind="value: stateblob" class="form-control" placeholder="Paste here..."><br>
                         <button class="btn btn-success" data-bind="click: loadStateBlob">Load</button>
                     </div>
 
-                    <h2>Edit colors and variants</h2>
+                    <div class="spacer"></div>
+
+                    <h2>2 – Edit</h2>
                     <p>H: 0..360, S: 0..100, V: 0..100. You can also use % for relative changes.</p>
 
                     <div data-bind="visible: undoStack().length">
@@ -90,6 +99,9 @@
                             </tr>
                         </tbody>
                     </table>
+
+                    <div class="spacer"></div>
+                    <h2>3 – Save</h2>
 
                     <ul id="export" class="nav nav-tabs">
                         <li><a href="#share" data-toggle="tab">Share</a></li>
